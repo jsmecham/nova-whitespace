@@ -1,0 +1,19 @@
+{
+    "identifier": "Mecham.Whitespace",
+    "name": "Whitespace",
+    "vendor": "Mecham",
+    "description": "Provides a command for trailing whitespace from documents.",
+    "version": "1.0.0",
+    "categories": [],
+    "main": "main.js",
+    "activationEvents": [],
+    "entitlements": {},
+    "commands": {
+        "editor": [
+		    {
+		    	"title": "Trim Trailing Whitespace",
+		    	"command": "whitespace.trim"
+		    }
+	    ]
+    }
+}
