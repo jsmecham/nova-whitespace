@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [1.1.1] - 2020-01-17
+
+### Fixed
+
+- Fixed package archive for publishing to Nova's extensions server.
+
 ## [1.1.0] - 2020-01-17
 
 ### Added
