@@ -1,9 +1,10 @@
 # ChangeLog
 
-## [UNRELEASED]
+## [1.1.0] - 2020-01-17
 
 ### Added
 
+- Added support for automatically trimming whitespace on save (default: `true`).
 - Added additional metadata to the Nova extension manifest.
 
 ## [1.0.0] - 2020-01-17

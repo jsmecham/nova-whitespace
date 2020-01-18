@@ -3,13 +3,12 @@
     "name": "Whitespace",
     "vendor": "Mecham",
     "description": "Provides a command for trailing whitespace from documents.",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "categories": [],
     "repository": "https://github.com/jsmecham/nova-whitespace",
     "bugs": "https://github.com/jsmecham/nova-whitespace/issues",
     "license": "MIT",
     "main": "main.js",
-    "activationEvents": [],
     "entitlements": {},
     "commands": {
         "editor": [
@@ -18,5 +17,14 @@
 		    	"command": "whitespace.trim"
 		    }
 	    ]
-    }
+    },
+    "config": [
+        {
+            "key": "Mecham.Whitespace.trimOnSave",
+            "title": "Trim on Save",
+            "description": "Automatically trim trailing whitespace when the active editor saves.",
+            "type": "boolean",
+            "default": true
+        }
+    ]
 }

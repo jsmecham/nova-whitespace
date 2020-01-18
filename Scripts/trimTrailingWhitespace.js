@@ -9,11 +9,10 @@ function trimTrailingWhitespace(editor) {
     const documentLength = editor.document.length;
     const documentRange = new Range(0, documentLength);
     const content = editor.getTextInRange(documentRange);
-
     const whitespaceExpression = /([ \t]+)$/gm;
     let removedCharacterCount = 0;
 
-    editor.edit(function(e) {
+    editor.edit(function(edit) {
         let match;
         while (match = whitespaceExpression.exec(content)) {
             const matchedWhitespace = match[1];
@@ -22,11 +21,18 @@ function trimTrailingWhitespace(editor) {
             const endIndex = startIndex + matchLength;
             const whitespaceRange = new Range(startIndex, endIndex);
 
-            e.replace(whitespaceRange, "");
+            edit.replace(whitespaceRange, "");
 
             removedCharacterCount = removedCharacterCount + matchLength;
         }
     });
 }
 
-module.exports = trimTrailingWhitespace;
+function maybeTrimTrailingWhitespace(editor) {
+    const trimOnSaveEnabled = nova.config.get("Mecham.Whitespace.trimOnSave");
+    if (!trimOnSaveEnabled) return;
+
+    trimTrailingWhitespace(editor);
+}
+
+module.exports = { trimTrailingWhitespace, maybeTrimTrailingWhitespace };
