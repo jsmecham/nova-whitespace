@@ -12,6 +12,19 @@ function trimTrailingWhitespace(editor) {
     const whitespaceExpression = /([ \t]+)$/gm;
     let removedCharacterCount = 0;
 
+    const selectedRanges = editor.selectedRanges;
+
+    const adjustSelectedRanges = function(selectedRanges, removedRange) {
+        selectedRanges.forEach((existingRange, index) => {
+            const needsAdjustment = existingRange.compare(removedRange) > 0;
+            if (needsAdjustment) {
+                const rangeCharacterCount = removedRange.end - removedRange.start;
+                const subtractedRange = adjustedRange(existingRange, rangeCharacterCount);
+                selectedRanges[index] = subtractedRange;
+            }
+        });
+    }
+
     editor.edit(function(edit) {
         let match;
         while (match = whitespaceExpression.exec(content)) {
@@ -24,8 +37,13 @@ function trimTrailingWhitespace(editor) {
             edit.replace(whitespaceRange, "");
 
             removedCharacterCount = removedCharacterCount + matchLength;
+
+            adjustSelectedRanges(selectedRanges, whitespaceRange);
         }
     });
+
+    // Restore Selected Ranges
+    editor.selectedRanges = selectedRanges;
 }
 
 function maybeTrimTrailingWhitespace(editor) {
@@ -33,6 +51,10 @@ function maybeTrimTrailingWhitespace(editor) {
     if (!trimOnSaveEnabled) return;
 
     trimTrailingWhitespace(editor);
+}
+
+function adjustedRange(range, offset) {
+    return new Range(range.start - offset, range.end - offset);
 }
 
 module.exports = { trimTrailingWhitespace, maybeTrimTrailingWhitespace };

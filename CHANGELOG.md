@@ -1,5 +1,12 @@
 # ChangeLog
 
+## [UNRELEASED]
+
+### Changed
+
+- Updated to maintain selection ranges and cursor position after trimming
+  whitespace.
+
 ## [1.1.1] - 2020-01-17
 
 ### Fixed
