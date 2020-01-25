@@ -2,6 +2,11 @@
 
 ## [UNRELEASED]
 
+### Changed
+
+- Made improvements to the README.
+- Updated the CHANGELOG to add the release date for 1.2.0.
+
 ## [1.2.0] - 2020-01-24
 
 ### Changed
