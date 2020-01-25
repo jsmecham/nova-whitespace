@@ -1,5 +1,7 @@
 # ChangeLog
 
+## [UNRELEASED]
+
 ## [1.2.0] - 2020-01-24
 
 ### Changed
