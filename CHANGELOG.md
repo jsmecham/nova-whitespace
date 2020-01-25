@@ -6,6 +6,7 @@
 
 - Updated to maintain selection ranges and cursor position after trimming
   whitespace.
+- Added to the "formatters" category in the Nova extensions registry.
 
 ## [1.1.1] - 2020-01-17
 
