@@ -8,6 +8,10 @@
   whitespace.
 - Added to the "formatters" category in the Nova extensions registry.
 
+### Added
+
+- Added ESLint configuration to the project.
+
 ## [1.1.1] - 2020-01-17
 
 ### Fixed

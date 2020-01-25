@@ -18,7 +18,7 @@ function trimTrailingWhitespace(editor) {
 
     editor.edit(function(edit) {
         let match;
-        while (match = whitespaceExpression.exec(content)) {
+        while ((match = whitespaceExpression.exec(content))) {
             const matchedWhitespace = match[1];
             const matchLength = matchedWhitespace.length;
             const startIndex = match.index - removedCharacterCount;

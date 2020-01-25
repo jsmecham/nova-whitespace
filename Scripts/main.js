@@ -14,7 +14,7 @@ exports.activate = function() {
         nova.workspace.onDidAddTextEditor(editor => editor.onWillSave(maybeTrimTrailingWhitespace))
     );
 
-}
+};
 
 // "Trim Trailing Whitespace" Action
 nova.commands.register("whitespace.trim", trimTrailingWhitespace);

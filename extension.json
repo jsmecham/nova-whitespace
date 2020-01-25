@@ -12,11 +12,11 @@
     "entitlements": {},
     "commands": {
         "editor": [
-		    {
-		    	"title": "Trim Trailing Whitespace",
-		    	"command": "whitespace.trim"
-		    }
-	    ]
+            {
+                "title": "Trim Trailing Whitespace",
+                "command": "whitespace.trim"
+            }
+        ]
     },
     "config": [
         {
