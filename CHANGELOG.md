@@ -1,10 +1,10 @@
 # ChangeLog
 
-## [UNRELEASED]
+## [Unreleased]
 
 ### Changed
 
-- Updated to maintain selection ranges and cursor position after trimming
+- Selection ranges and cursor positions are now maintained after trimming
   whitespace.
 - Added to the "formatters" category in the Nova extensions registry.
 

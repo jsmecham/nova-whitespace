@@ -5,6 +5,8 @@
 // Copyright © 2020 Justin Mecham. All rights reserved.
 //
 
+require("Extensions/Range");
+
 function trimTrailingWhitespace(editor) {
     const documentLength = editor.document.length;
     const documentRange = new Range(0, documentLength);
@@ -13,17 +15,6 @@ function trimTrailingWhitespace(editor) {
     let removedCharacterCount = 0;
 
     const selectedRanges = editor.selectedRanges;
-
-    const adjustSelectedRanges = function(selectedRanges, removedRange) {
-        selectedRanges.forEach((existingRange, index) => {
-            const needsAdjustment = existingRange.compare(removedRange) > 0;
-            if (needsAdjustment) {
-                const rangeCharacterCount = removedRange.end - removedRange.start;
-                const subtractedRange = adjustedRange(existingRange, rangeCharacterCount);
-                selectedRanges[index] = subtractedRange;
-            }
-        });
-    }
 
     editor.edit(function(edit) {
         let match;
@@ -43,7 +34,8 @@ function trimTrailingWhitespace(editor) {
     });
 
     // Restore Selected Ranges
-    editor.selectedRanges = selectedRanges;
+    const compactedRanges = selectedRanges.filter(Boolean); // Remove NULL Ranges
+    editor.selectedRanges = compactedRanges;
 }
 
 function maybeTrimTrailingWhitespace(editor) {
@@ -53,8 +45,29 @@ function maybeTrimTrailingWhitespace(editor) {
     trimTrailingWhitespace(editor);
 }
 
-function adjustedRange(range, offset) {
-    return new Range(range.start - offset, range.end - offset);
+function adjustSelectedRanges(selectedRanges, removedRange) {
+    selectedRanges.forEach((existingRange, index) => {
+        selectedRanges[index] = adjustRange(existingRange, removedRange);
+    });
+}
+
+function adjustRange(range, removedRange) {
+    const rangeComparison = range.compare(removedRange);
+
+    if (rangeComparison == 0) return;
+
+    if (range.intersectsRange(removedRange)) {
+        if (rangeComparison == -1) {
+            const adjustedEnd = range.end <= removedRange.end
+                ? range.end - (removedRange.length - (removedRange.end - range.end))
+                : range.end - removedRange.length;
+            return new Range(range.start, adjustedEnd);
+        }
+    } else if (rangeComparison == 1) {
+        return new Range(range.start - removedRange.length, range.end - removedRange.length);
+    } else if (rangeComparison == -1) {
+        return range;
+    }
 }
 
 module.exports = { trimTrailingWhitespace, maybeTrimTrailingWhitespace };
