@@ -5,7 +5,7 @@
 // Copyright © 2020 Justin Mecham. All rights reserved.
 //
 
-require("Extensions/Range");
+require("./Extensions/Range");
 
 function trimTrailingWhitespace(editor) {
     const documentLength = editor.document.length;

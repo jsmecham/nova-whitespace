@@ -5,7 +5,7 @@
 // Copyright © 2020 Justin Mecham. All rights reserved.
 //
 
-const { maybeTrimTrailingWhitespace, trimTrailingWhitespace } = require("trimTrailingWhitespace");
+const { maybeTrimTrailingWhitespace, trimTrailingWhitespace } = require("./trimTrailingWhitespace");
 
 exports.activate = function() {
 
