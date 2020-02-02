@@ -1,0 +1,11 @@
+{
+  "name": "Whitespace.novaextension",
+  "version": "1.3.0",
+  "description": "Provides an editor command for trimming trailing whitespace characters from the focused editor document.",
+  "author": "Justin Mecham",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "editorconfig": "^0.15.3"
+  }
+}

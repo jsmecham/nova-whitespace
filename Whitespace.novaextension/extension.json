@@ -9,7 +9,10 @@
     "bugs": "https://github.com/jsmecham/nova-whitespace/issues",
     "license": "MIT",
     "main": "main.dist.js",
-    "entitlements": {},
+    "entitlements": {
+        "filesystem": "readonly",
+        "process": true
+    },
     "commands": {
         "editor": [
             {
