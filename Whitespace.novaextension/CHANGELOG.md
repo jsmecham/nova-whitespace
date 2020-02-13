@@ -1,6 +1,6 @@
 # ChangeLog
 
-## UNRELEASED
+## Version 1.3.0
 
 - Added support for the `trim_trailing_whitespace` EditorConfig setting.
 - Restructured the project to allow for npm dependencies to be consumed.
