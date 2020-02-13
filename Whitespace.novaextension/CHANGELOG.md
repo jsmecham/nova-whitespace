@@ -2,6 +2,7 @@
 
 ## UNRELEASED
 
+- Added support for the `trim_trailing_whitespace` EditorConfig setting.
 - Restructured the project to allow for npm dependencies to be consumed.
 - Made improvements to the README.
 - Simplified the formatting of the CHANGELOG.

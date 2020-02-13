@@ -8,13 +8,14 @@
 require("./Extensions/Range");
 
 function trimTrailingWhitespace(editor) {
+    const selectedRanges = editor.selectedRanges;
     const documentLength = editor.document.length;
     const documentRange = new Range(0, documentLength);
     const content = editor.getTextInRange(documentRange);
     const whitespaceExpression = /([ \t]+)$/gm;
     let removedCharacterCount = 0;
 
-    const selectedRanges = editor.selectedRanges;
+    console.log("Trimming trailing whitespace from", editor.document.path);
 
     editor.edit(function(edit) {
         let match;
@@ -36,13 +37,6 @@ function trimTrailingWhitespace(editor) {
     // Restore Selected Ranges
     const compactedRanges = selectedRanges.filter(Boolean); // Remove NULL Ranges
     editor.selectedRanges = compactedRanges;
-}
-
-function maybeTrimTrailingWhitespace(editor) {
-    const trimOnSaveEnabled = nova.config.get("Mecham.Whitespace.trimOnSave");
-    if (!trimOnSaveEnabled) return;
-
-    trimTrailingWhitespace(editor);
 }
 
 function adjustSelectedRanges(selectedRanges, removedRange) {
@@ -70,4 +64,4 @@ function adjustRange(range, removedRange) {
     }
 }
 
-module.exports = { trimTrailingWhitespace, maybeTrimTrailingWhitespace };
+module.exports = { trimTrailingWhitespace };

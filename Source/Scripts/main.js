@@ -5,26 +5,20 @@
 // Copyright © 2020 Justin Mecham. All rights reserved.
 //
 
-const { NPMExecutable } = require("nova-npm-executable");
-const { maybeTrimTrailingWhitespace, trimTrailingWhitespace } = require("./trimTrailingWhitespace");
+const EditorConfigService = require("./EditorConfigService");
+const Whitespace = require("./Whitespace");
 
 exports.activate = function() {
 
-    const editorConfig = new NPMExecutable("editorconfig");
-    if (!editorConfig.isInstalled) {
-		editorConfig.install().catch(error => {
-			console.error(error);
-		});
-	}
+    const editorConfigService = new EditorConfigService();
+    const whitespace = new Whitespace(editorConfigService);
 
     // "Trim on Save"
-    nova.subscriptions.add(
-        nova.workspace.onDidAddTextEditor((editor) => {
-            return editor.onWillSave(maybeTrimTrailingWhitespace);
-        })
-    );
+    nova.workspace.onDidAddTextEditor((editor) => {
+        return editor.onWillSave(whitespace.maybeTrimTrailingWhitespace.bind(whitespace));
+    })
+
+    // "Trim Trailing Whitespace" Action
+    nova.commands.register("whitespace.trim", whitespace.trimTrailingWhitespace);
 
 };
-
-// "Trim Trailing Whitespace" Action
-nova.commands.register("whitespace.trim", trimTrailingWhitespace);
