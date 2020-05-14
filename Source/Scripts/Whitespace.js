@@ -31,7 +31,7 @@ class Whitespace {
         if (!this.isTrimOnSavePreferenceEnabled) return;
         if (!(await this.isTrimOnSaveEnabledForDocument(editor.document))) return;
 
-        return trimTrailingWhitespace(editor);    
+        return trimTrailingWhitespace(editor);
     }
 
 }

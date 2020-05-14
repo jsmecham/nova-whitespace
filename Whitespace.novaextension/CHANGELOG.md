@@ -1,5 +1,10 @@
 # ChangeLog
 
+## Version 1.3.1
+
+- Removed custom Range.length extension to fix a conflict with the new built-in
+  implementation.
+
 ## Version 1.3.0
 
 - Added support for the `trim_trailing_whitespace` EditorConfig setting.
