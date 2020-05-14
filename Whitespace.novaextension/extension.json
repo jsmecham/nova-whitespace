@@ -3,7 +3,7 @@
     "name": "Whitespace",
     "vendor": "Mecham",
     "description": "Provides support for trimming trailing whitespace from documents.",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "categories": ["formatters"],
     "repository": "https://github.com/jsmecham/nova-whitespace",
     "bugs": "https://github.com/jsmecham/nova-whitespace/issues",
